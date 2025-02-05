@@ -19,27 +19,34 @@ Refer to the `scripts/docker` setup in the repository.
 Run the following command to start the Minikube cluster:
 ```bash
 minikube start --memory=6144 --cpus=4 --driver=docker --force
-
+```
+```bash
 kubectl create namespace dev
 kubectl create namespace prod
-# create the role files & role bindings
-
+```
+---
+## create the role files & role bindings
+```bash
 vi dev-role.yaml 
 # see the repo for its content 
 kubectl apply -f dev-role.yaml -n dev
 vi dev-rolebinding.yaml 
 # see the repo for its content 
 kubectl apply -f dev-rolebinding.yaml -b dev 
-
-# If you want to create the roles that you want to apply in all namespaces use cluster role below
+```
+--- 
+## If you want to create the roles that you want to apply in all namespaces use cluster role below
+```bash
 vi clusterrole-amdin.yaml 
 # see the repo for its content 
 kubectl apply -f clusterrole-admin.yaml 
 vi clusterrolebinding.yaml 
 # see the repo for its content 
 kubectl apply -f clusterrolebinding.yaml
-
-# Test whether the roles are working as defined
+```
+---
+## Test whether the roles are working as defined
+```bash
 kubectl auth can-i get pods --as=dev-user -n dev
 kubectl auth can-i delete pods --as=dev-user -n dev
 kubectl create deployment nginx --image=nginx -n dev --as=dev-user
