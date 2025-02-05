@@ -25,7 +25,7 @@ kubectl create namespace dev
 kubectl create namespace prod
 ```
 ---
-## create the role files & role bindings
+## Creating roles & role bindings
 ```bash
 vi dev-role.yaml 
 # see the repo for its content 
